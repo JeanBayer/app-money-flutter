@@ -23,17 +23,19 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("prueba"),
       ),
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            child: Card(
-              color: Colors.blueGrey,
-              child: Text("CHART"),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.blueGrey,
+                child: Text("CHART"),
+              ),
             ),
-          ),
-          UserTransaction(),
-        ],
+            UserTransaction(),
+          ],
+        ),
       ),
     );
   }
