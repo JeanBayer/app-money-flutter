@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.pink),
       title: 'Flutter App',
       home: MyHomePage(),
     );
@@ -62,37 +63,38 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.add,
-              ),
-              onPressed: () => _addNewTx(context),
+      backgroundColor: Color(0xFFFFE1EA),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.add,
             ),
-          ],
-          title: Text("prueba"),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                child: Card(
-                  color: Colors.blueGrey,
-                  child: Text("CHART"),
-                ),
+            onPressed: () => _addNewTx(context),
+          ),
+        ],
+        title: Text("prueba"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Theme.of(context).primaryColor,
+                child: Text("CHART"),
               ),
-              TransactionList(_userTransaction),
-            ],
-          ),
+            ),
+            TransactionList(_userTransaction),
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _addNewTx(context),
-          child: Icon(
-            Icons.add,
-          ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _addNewTx(context),
+        child: Icon(
+          Icons.add,
         ),
+      ),
     );
   }
 }

@@ -18,6 +18,8 @@ class TransactionList extends StatelessWidget {
             height: 100,
             margin: EdgeInsets.all(20),
             child: Card(
+              shadowColor: Colors.pink,
+              color: Color(0xFFFFE1EA),
               elevation: 5,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,7 +30,7 @@ class TransactionList extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 2,
-                        color: Colors.purple,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                     child: Text(
@@ -36,7 +38,7 @@ class TransactionList extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.purple,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ),
