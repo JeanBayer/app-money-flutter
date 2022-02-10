@@ -13,19 +13,24 @@ class NewTransaction extends StatefulWidget {
 class _NewTransactionState extends State<NewTransaction> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
-  DateTime? dateTime;
+  DateTime? _dateTime;
 
   void _submitData() {
+    if (_amountController == null) {
+      return;
+    }
+
     final enteredTitle = _titleController.text;
     final enteredAmount = double.parse(_amountController.text);
 
-    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+    if (enteredTitle.isEmpty || enteredAmount <= 0 || _dateTime == null) {
       return;
     }
 
     widget.addTx(
       enteredTitle,
       enteredAmount,
+      _dateTime
     );
 
     Navigator.of(context).pop();
@@ -37,12 +42,12 @@ class _NewTransactionState extends State<NewTransaction> {
       initialDate: DateTime.now(),
       firstDate: DateTime(2022),
       lastDate: DateTime.now(),
-    ).then((dateTimeSelected) {
-      if (dateTimeSelected == null) {
+    ).then((_dateTimeSelected) {
+      if (_dateTimeSelected == null) {
         return;
       }
       setState(() {
-        dateTime = dateTimeSelected;
+        _dateTime = _dateTimeSelected;
       });
     });
   }
@@ -76,9 +81,9 @@ class _NewTransactionState extends State<NewTransaction> {
               child: Row(
                 children: [
                   Expanded(
-                      child: Text(dateTime == null
+                      child: Text(_dateTime == null
                           ? "No has elegido una fecha"
-                          : DateFormat.yMEd().format(dateTime!))),
+                          : DateFormat.yMEd().format(_dateTime!))),
                   TextButton(
                     child: Text("Elige una"),
                     onPressed: datePickerFunction,
