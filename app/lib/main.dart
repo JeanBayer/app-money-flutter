@@ -34,18 +34,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransaction = [
-    Transaction(
-      id: "t1",
-      title: "food",
-      amount: 13.25,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: "t2",
-      title: "shoes",
-      amount: 3.25,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: "t1",
+    //   title: "food",
+    //   amount: 13.25,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: "t2",
+    //   title: "shoes",
+    //   amount: 3.25,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   List<Transaction> get _groupedTransantionValue {
@@ -75,6 +75,12 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
+  void _deleteItem(String id) {
+    setState(() {  
+    _userTransaction.removeWhere((element) => element.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,11 +100,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             Chart(_groupedTransantionValue),
-            TransactionList(_userTransaction),
+            TransactionList(_userTransaction, _deleteItem),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        
         onPressed: () => _addNewTx(context),
         child: Icon(
           Icons.add,
